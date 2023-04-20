@@ -3,16 +3,13 @@ import s from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
-export const Profile = () => {
-  let posts = [
-    {id: 1, message: "Hi, how are you?", likesCount: 12},
-    {id: 2, message: "It's my first post", likesCount: 11},
-  ]
+export const Profile = (props) => {
+
 
   return (
     <div>
       <ProfileInfo />
-      <MyPosts posts={posts}/>
+      <MyPosts posts={props.posts}/>
     </div>
   )
 }
