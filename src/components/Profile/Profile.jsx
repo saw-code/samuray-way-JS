@@ -5,7 +5,6 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 export const Profile = (props) => {
 
-
   return (
     <div>
       <ProfileInfo />
