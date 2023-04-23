@@ -8,7 +8,6 @@ import {Route} from "react-router-dom";
 import Settings from "./components/Settings/Settings";
 import Music from "./components/Music/Music";
 import News from "./components/News/News";
-import {updateNewPostText} from "./redux/state";
 
 const App = (props) => {
   return (
