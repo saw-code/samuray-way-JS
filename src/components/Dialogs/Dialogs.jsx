@@ -5,16 +5,19 @@ import {Message} from "./Message/Message";
 import {addMessageAC, updateNewMessageAC} from "../../redux/state";
 
 const Dialogs = (props) => {
-  let dialogsElements = props.state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
-  let messagesElements = props.state.messages.map(m => <Message key={m.id} message={m.message}/>)
 
-    let addMessage = () => {
-    props.dispatch(addMessageAC())
+  let state = props.store.getState().dialogsPage
+
+  let dialogsElements = state.dialogs.map(d => <DialogItem key={d.id} id={d.id} name={d.name}/>)
+  let messagesElements = state.messages.map(m => <Message key={m.id} message={m.message}/>)
+
+  let addMessage = () => {
+    props.store.dispatch(addMessageAC())
   }
 
   let onMessageChange = (event) => {
     let text = event.currentTarget.value
-    props.dispatch(updateNewMessageAC(text))
+    props.store.dispatch(updateNewMessageAC(text))
   }
 
   return (
@@ -25,8 +28,10 @@ const Dialogs = (props) => {
       <div className={s.messages}>
         <div>{messagesElements}</div>
         <div>
-          <div><textarea onChange={onMessageChange} value={props.state.newMessage}></textarea></div>
-          <div><button onClick={addMessage}>Send message</button></div>
+          <div><textarea onChange={onMessageChange} value={state.newMessage}></textarea></div>
+          <div>
+            <button onClick={addMessage}>Send message</button>
+          </div>
         </div>
       </div>
     </div>
