@@ -44,14 +44,14 @@ const UsersReducer = (state = initialState, action) => {
   }
 }
 
-export const subscribe = (userId) => {
+export const follow = (userId) => {
   return {
     type: FOLLOW,
     userId
   }
 }
 
-export const unsubscribe = (userId) => {
+export const unfollow = (userId) => {
   return {
     type: UNFOLLOW,
     userId

@@ -1,6 +1,7 @@
 import React from 'react';
 import s from "./users.module.css";
 import userPhoto from "../../assets/images/default.png";
+import {NavLink} from "react-router-dom";
 
 export const Users = (props) => {
 
@@ -15,23 +16,26 @@ export const Users = (props) => {
     <div>
       <div>
         {pages.map(p => {
-          return <span className={props.currentPage === p && s.selectedPage} onClick={() => props.onPageChanged(p)}>{p}</span>
+          return <span className={props.currentPage === p && s.selectedPage}
+                       onClick={() => props.onPageChanged(p)}>{p}</span>
         })}
 
       </div>
       {props.users.map(u => <div key={u.id}>
         <span>
           <div>
-            <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto} />
+            <NavLink to={`/profile/${u.id}`}>
+              <img src={u.photos.small != null ? u.photos.small : userPhoto} className={s.userPhoto}/>
+            </NavLink>
           </div>
           <div>
             {u.subscribe
               ? <button onClick={() => {
-                props.unsubscribe(u.id)
-              }}>Unsubscribe</button>
+                props.unfollow(u.id)
+              }}>Unfollow</button>
               : <button onClick={() => {
-                props.subscribe(u.id)
-              }}>Subscribe</button>}
+                props.follow(u.id)
+              }}>Follow</button>}
           </div>
         </span>
         <span>
